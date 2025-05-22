@@ -20,7 +20,7 @@ class SensorRepository {
         .build()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.137.101/") // ESP8266'nın IP adresi güncellendi
+        .baseUrl("http://192.168.1.100/") // ESP8266'nın IP adresi güncellendi
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
