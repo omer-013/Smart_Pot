@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textToprak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Toprak Nem: --"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textSicaklik"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sıcaklık: --"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textNem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nem: --"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textSulama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sulama Durumu: --"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnYenile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Verileri Yenile"/>
+</LinearLayout>
