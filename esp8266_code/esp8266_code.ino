@@ -4,8 +4,8 @@
 #include <ESP8266WebServer.h>
 
 // WiFi ayarları
-const char* ssid = "LENOVO";  // WiFi ağınızın adı
-const char* password = "123456780";  // WiFi şifreniz
+const char* ssid = "WiFi_Adi";  // WiFi ağınızın adı
+const char* password = "WiFi_Sifresi";  // WiFi şifreniz
 
 // Web sunucusu
 ESP8266WebServer server(80);
