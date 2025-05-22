@@ -1,65 +1,76 @@
-# Android Akıllı Saksı Uygulaması
+# ESP8266 Akıllı Saksı
 
-ESP8266'dan sensör verilerini görüntüleyen Android uygulaması.
+Arduino kodu ile otomatik sulama sistemi.
 
-## Teknoloji
+## Pin Bağlantıları
 
-- Kotlin
-- Jetpack Compose
-- Retrofit (HTTP istekleri)
-- MVVM mimarisi
+**Sensörler:**
+| Sensör | Pin |
+|--------|-----|
+| DHT11 | D3 |
+| Toprak Nem | A0 |
+
+**Aktüatörler:**
+| Aktüatör | Pin |
+|----------|-----|
+| Su Motoru | D0 |
+| Buzzer | D1 |
+
+## Gerekli Kütüphaneler
+
+Arduino IDE'de yükle:
+- `DHT11` by Dhruba Saha
+- `ESP8266WiFi` (otomatik gelir)
 
 ## Kurulum
 
-1. **Android Studio'yu aç**
-2. **Projeyi import et**
-3. **ESP8266 IP adresini güncelle:**
-   ```kotlin
-   // SensorRepository.kt dosyasında
-   .baseUrl("http://192.168.1.100/") // Kendi IP'nizi yazın
+1. **Arduino IDE'yi aç**
+2. **ESP8266 board'unu yükle**
+3. **WiFi bilgilerini değiştir:**
+   ```cpp
+   const char* ssid = "WiFiAdi";
+   const char* password = "WiFiSifresi";
    ```
-4. **Uygulamayı derle ve çalıştır**
+4. **Kodu ESP8266'ya yükle**
+5. **Serial Monitor'dan IP adresini al**
 
-## Özellikler
+## Web Arayüzü
 
-- 5 saniyede bir otomatik güncelleme
-- Renk kodlu uyarılar:
-  - 🟢 İyi durum
-  - 🟠 Uyarı
-  - 🔴 Kritik
-- Gerçek zamanlı veri gösterimi
+ESP8266'nın IP adresini tarayıcıda aç.
+Örnek: `http://192.168.1.100`
 
-## Gereksinimler
+## API
 
-- İnternet izni
-- ESP8266 ile aynı WiFi ağı
+- `GET /` - Web sayfası
+- `GET /data` - JSON sensör verileri
 
-## Dosya Yapısı
-
-```
-app/src/main/java/com/example/smartpotapp/
-├── MainActivity.kt          # Ana aktivite
-├── ui/SensorScreen.kt      # Ekran tasarımı
-├── api/SensorApi.kt        # API interface
-├── repository/             # Veri katmanı
-└── viewmodel/              # ViewModel
+JSON formatı:
+```json
+{
+  "toprak_nem": 250,
+  "sicaklik": 25,
+  "nem": 60,
+  "sulama_durumu": false
+}
 ```
 
-## Kullanım
+## Ayarlar
 
-1. ESP8266'nın çalıştığından emin ol
-2. Uygulamayı aç
-3. Sensör verilerini görüntüle
-4. Renk kodlarına dikkat et
+```cpp
+#define MOTOR_HIZ 400    // Motor hızı (0-1023)
+#define alarm 100        // Alarm eşiği
+```
 
 ## Sorun Giderme
 
-**Veri gelmiyor:**
-- ESP8266 IP adresini kontrol et
-- Aynı WiFi ağında ol
-- ESP8266'nın çalıştığını kontrol et
+**WiFi bağlanmıyor:**
+- WiFi bilgilerini kontrol et
+- Router'a yaklaş (zayıf sinyal sorunu)
+- 2.4GHz ağ kullan (5GHz desteklenmez)
 
-**Uygulama çöküyor:**
-- İnternet izni var mı kontrol et
-- Logcat'te hata mesajlarına bak
+**Sensör okumuyor:**
+- Pin bağlantılarını kontrol et
+- Sensörü değiştir
 
+---
+*Not: Tüm bağlantıları kontrol ettikten sonra çalıştır*
